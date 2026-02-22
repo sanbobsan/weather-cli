@@ -91,7 +91,7 @@ class HourlyForecast(ForecastModel):
 class Weather(BaseModel):
     """Информация о погоде"""
 
-    location: Optional[str] = Field(default="Unknown")
+    location_name: Optional[str] = Field(default="Unknown")
     current: Optional[CurrentForecast] = Field(default=None)
     daily: Optional[list[DailyForecast]] = Field(default=None)
     hourly: Optional[list[HourlyForecast]] = Field(default=None)

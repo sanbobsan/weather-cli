@@ -4,6 +4,7 @@ from .models import (
     ForecastType,
     HourlyForecast,
     Location,
+    Weather,
 )
 
 __all__ = [
@@ -12,4 +13,5 @@ __all__ = [
     "ForecastType",
     "HourlyForecast",
     "Location",
+    "Weather",
 ]
