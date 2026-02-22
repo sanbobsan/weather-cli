@@ -6,17 +6,31 @@
 #
 annotated-doc==0.0.4
     # via typer
+charset-normalizer==3.4.4
+    # via niquests
 click==8.3.1
     # via typer
+h11==0.16.0
+    # via urllib3-future
+jh2==5.0.10
+    # via urllib3-future
 markdown-it-py==4.0.0
     # via rich
 mdurl==0.1.2
     # via markdown-it-py
+niquests==3.17.0
+    # via -r requirements.in
 pygments==2.19.2
     # via rich
+qh3==1.5.6
+    # via urllib3-future
 rich==14.3.3
     # via typer
 shellingham==1.5.4
     # via typer
 typer==0.24.0
     # via -r requirements.in
+urllib3-future==2.15.903
+    # via niquests
+wassima==2.0.5
+    # via niquests

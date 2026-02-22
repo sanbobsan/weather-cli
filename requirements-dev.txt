@@ -10,11 +10,23 @@ annotated-doc==0.0.4
     #   typer
 build==1.4.0
     # via pip-tools
+charset-normalizer==3.4.4
+    # via
+    #   -r requirements.txt
+    #   niquests
 click==8.3.1
     # via
     #   -r requirements.txt
     #   pip-tools
     #   typer
+h11==0.16.0
+    # via
+    #   -r requirements.txt
+    #   urllib3-future
+jh2==5.0.10
+    # via
+    #   -r requirements.txt
+    #   urllib3-future
 librt==0.8.1
     # via mypy
 markdown-it-py==4.0.0
@@ -29,6 +41,8 @@ mypy==1.19.1
     # via -r requirements-dev.in
 mypy-extensions==1.1.0
     # via mypy
+niquests==3.17.0
+    # via -r requirements.txt
 packaging==26.0
     # via
     #   build
@@ -45,6 +59,10 @@ pyproject-hooks==1.2.0
     # via
     #   build
     #   pip-tools
+qh3==1.5.6
+    # via
+    #   -r requirements.txt
+    #   urllib3-future
 rich==14.3.3
     # via
     #   -r requirements.txt
@@ -57,6 +75,14 @@ typer==0.24.0
     # via -r requirements.txt
 typing-extensions==4.15.0
     # via mypy
+urllib3-future==2.15.903
+    # via
+    #   -r requirements.txt
+    #   niquests
+wassima==2.0.5
+    # via
+    #   -r requirements.txt
+    #   niquests
 wheel==0.46.3
     # via pip-tools
 
