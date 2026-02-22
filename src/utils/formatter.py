@@ -262,8 +262,8 @@ def format_hourly(forecasts: list[HourlyForecast], limit: int = 12) -> Panel:
 
 def format_weather(
     weather: Weather,
-    show_daily: int = 7,
-    show_hourly: int = 12,
+    show_daily: int | None = None,
+    show_hourly: int | None = None,
 ) -> list[Panel]:
     """Собирает полный отчет о погоде"""
     output: list[Panel] = []
@@ -282,10 +282,10 @@ def format_weather(
     if weather.current:
         output.append(format_current(weather.current))
     # Прогноз по дням
-    if weather.daily and show_daily > 0:
+    if weather.daily and show_daily and show_daily > 0:
         for day in weather.daily[:show_daily]:
             output.append(format_daily(day))
     # Почасовой прогноз
-    if weather.hourly and show_hourly > 0:
+    if weather.hourly and show_hourly and show_hourly > 0:
         output.append(format_hourly(weather.hourly, limit=show_hourly))
     return output
