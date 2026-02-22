@@ -8,6 +8,10 @@ annotated-doc==0.0.4
     # via
     #   -r requirements.txt
     #   typer
+annotated-types==0.7.0
+    # via
+    #   -r requirements.txt
+    #   pydantic
 build==1.4.0
     # via pip-tools
 charset-normalizer==3.4.4
@@ -51,6 +55,12 @@ pathspec==1.0.4
     # via mypy
 pip-tools==7.5.3
     # via -r requirements-dev.in
+pydantic==2.12.5
+    # via -r requirements.txt
+pydantic-core==2.41.5
+    # via
+    #   -r requirements.txt
+    #   pydantic
 pygments==2.19.2
     # via
     #   -r requirements.txt
@@ -74,7 +84,16 @@ shellingham==1.5.4
 typer==0.24.0
     # via -r requirements.txt
 typing-extensions==4.15.0
-    # via mypy
+    # via
+    #   -r requirements.txt
+    #   mypy
+    #   pydantic
+    #   pydantic-core
+    #   typing-inspection
+typing-inspection==0.4.2
+    # via
+    #   -r requirements.txt
+    #   pydantic
 urllib3-future==2.15.903
     # via
     #   -r requirements.txt
