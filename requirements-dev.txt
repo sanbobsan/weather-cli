@@ -24,6 +24,7 @@ click==8.3.1
     # via
     #   -r requirements.txt
     #   pip-tools
+    #   shiv
     #   typer
 h11==0.16.0
     # via
@@ -89,6 +90,8 @@ shellingham==1.5.4
     # via
     #   -r requirements.txt
     #   typer
+shiv==1.0.8
+    # via -r requirements-dev.in
 typer==0.24.0
     # via -r requirements.txt
 typing-extensions==4.15.0

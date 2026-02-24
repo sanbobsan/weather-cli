@@ -2,3 +2,4 @@
 pip-tools
 mypy
 pyinstaller
+shiv
