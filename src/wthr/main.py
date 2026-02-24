@@ -3,9 +3,9 @@ from typing import Annotated, Optional
 import typer
 from rich import print
 
-from api import WeatherAPIClient
-from models import ForecastType
-from utils import format_weather
+from wthr.api import WeatherAPIClient
+from wthr.models import ForecastType
+from wthr.utils import format_weather
 
 app = typer.Typer()
 

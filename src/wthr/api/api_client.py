@@ -3,7 +3,7 @@ from typing import Literal
 from niquests import Response, Session
 from niquests.adapters import HTTPAdapter
 
-from models import (
+from wthr.models import (
     CurrentForecast,
     DailyForecast,
     ForecastType,

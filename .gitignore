@@ -1,6 +1,12 @@
-
+# python byte files
 **/__pycache__
 **/*.py[cod]
 
+# virtual environment
 .venv
+
+# tools
 .mypy_cache
+
+# python packaging
+**/*.egg-info

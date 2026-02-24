@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools >= 82.0.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wthr"
+version = "0.2"
+requires-python = ">=3.12"
+dependencies = ["typer>=0.24.0", "niquests>=3.17.0", "pydantic>=2.12.5"]
+
+[project.urls]
+Repository = "https://github.com/sanbobsan/weather-cli.git"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[project.scripts]
+wthr = "wthr.main:app"
