@@ -21,9 +21,9 @@ markdown-it-py==4.0.0
 mdurl==0.1.2
     # via markdown-it-py
 niquests==3.17.0
-    # via -r requirements.in
+    # via wthr (pyproject.toml)
 pydantic==2.12.5
-    # via -r requirements.in
+    # via wthr (pyproject.toml)
 pydantic-core==2.41.5
     # via pydantic
 pygments==2.19.2
@@ -35,7 +35,7 @@ rich==14.3.3
 shellingham==1.5.4
     # via typer
 typer==0.24.0
-    # via -r requirements.in
+    # via wthr (pyproject.toml)
 typing-extensions==4.15.0
     # via
     #   pydantic
