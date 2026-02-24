@@ -10,3 +10,7 @@
 
 # python packaging
 **/*.egg-info
+
+# pyinstaller
+**/dist
+**/build
