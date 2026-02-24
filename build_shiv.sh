@@ -3,7 +3,7 @@ set -e
 
 OUTPUT="dist/wthr.pyz" 
 
-rm -rf dist
+rm -f $OUTPUT
 mkdir -p dist
 
 shiv . \
