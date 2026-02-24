@@ -1,0 +1,18 @@
+name: Build Ubuntu
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt pyinstaller
+      - run: pyinstaller wthr.spec
+      - uses: actions/upload-artifact@v4
+        with:
+          name: wthr-linux
+          path: dist/
