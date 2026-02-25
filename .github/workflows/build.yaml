@@ -1,18 +1,27 @@
 name: Build Ubuntu
 
-on: [push]
+on:
+  push:
+    branches: [build]
+  pull_request:
+    branches: [build]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: сheckout code
+        uses: actions/checkout@v6
+      - name: setup python
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
-      - run: pip install -r requirements.txt pyinstaller
-      - run: pyinstaller wthr.spec
-      - uses: actions/upload-artifact@v4
+      - run: pip install -r requirements.txt -r requirements-build.txt
+      - name: build via pyinstaller
+        run: sh build.sh
+      - name: build via shiv
+        run: sh build_shiv.sh
+      - name: upload artifact
+        uses: actions/upload-artifact@v6
         with:
-          name: wthr-linux
           path: dist/
