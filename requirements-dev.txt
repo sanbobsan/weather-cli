@@ -4,8 +4,6 @@
 #
 #    pip-compile requirements-dev.in
 #
-altgraph==0.17.5
-    # via pyinstaller
 annotated-doc==0.0.4
     # via
     #   -r requirements.txt
@@ -24,7 +22,6 @@ click==8.3.1
     # via
     #   -r requirements.txt
     #   pip-tools
-    #   shiv
     #   typer
 h11==0.16.0
     # via
@@ -53,8 +50,6 @@ niquests==3.17.0
 packaging==26.0
     # via
     #   build
-    #   pyinstaller
-    #   pyinstaller-hooks-contrib
     #   wheel
 pathspec==1.0.4
     # via mypy
@@ -70,10 +65,6 @@ pygments==2.19.2
     # via
     #   -r requirements.txt
     #   rich
-pyinstaller==6.19.0
-    # via -r requirements-dev.in
-pyinstaller-hooks-contrib==2026.1
-    # via pyinstaller
 pyproject-hooks==1.2.0
     # via
     #   build
@@ -90,8 +81,6 @@ shellingham==1.5.4
     # via
     #   -r requirements.txt
     #   typer
-shiv==1.0.8
-    # via -r requirements-dev.in
 typer==0.24.0
     # via -r requirements.txt
 typing-extensions==4.15.0
