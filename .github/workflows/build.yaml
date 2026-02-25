@@ -3,6 +3,7 @@ name: Build Ubuntu
 on:
   pull_request:
     branches: [build]
+  workflow_dispatch:
 
 jobs:
   build:
