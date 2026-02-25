@@ -1,11 +1,12 @@
 from typing import Annotated, Optional
 
 import typer
-from rich import print
+from rich import box, print
+from rich.panel import Panel
 
 from wthr.api import WeatherAPIClient
 from wthr.models import ForecastType
-from wthr.utils import format_weather
+from wthr.utils import format_weather, storage
 
 app = typer.Typer()
 
@@ -92,8 +93,11 @@ def weather(
       $ weather-cli weather
     """
     if not location:
-        location = typer.prompt("Укажите место")
-        print()
+        if loc := storage.get_default_location():
+            location = loc
+        else:
+            location = typer.prompt("Укажите место")
+            print()
 
     if not any([mixed, d, days, h, hours]):
         type: ForecastType = ForecastType.CURRENT
@@ -136,10 +140,31 @@ def set(
         str, typer.Argument(help="Место, где нужно узнать погоду")
     ] = "",
 ) -> None:
-    """Запомнить место."""
+    """Сохранить место в конфиг, чтобы в дальнейшем автоматически использовать его для получения погоды"""
     if not location:
-        location = typer.prompt("Укажите место для сохранения")
-    typer.echo(f"Локация {location} сохранена!")
+        location = typer.prompt("Укажите место")
+        print()
+
+    storage.set_default_location(location)
+    typer.echo(f'Ваше место: "{location}" сохранена в конфиг')
+
+
+@app.command()
+def get() -> None:
+    """Проверить текущее место в конфиге"""
+    location = storage.get_default_location()
+    if location:
+        text = f"Ваше место: {location}"
+    else:
+        text = "Ваше место не указано"
+    panel = Panel(
+        text,
+        border_style="grey50",
+        padding=(0, 2),
+        box=box.ROUNDED,
+        expand=False,
+    )
+    print(panel)
 
 
 if __name__ == "__main__":
