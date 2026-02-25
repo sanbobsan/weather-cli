@@ -10,6 +10,11 @@ from wthr.utils import format_weather
 app = typer.Typer()
 
 
+@app.callback(invoke_without_command=True)
+def main():
+    weather()
+
+
 @app.command("weather")
 def weather(
     location: Annotated[
