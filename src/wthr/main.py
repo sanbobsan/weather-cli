@@ -11,8 +11,9 @@ app = typer.Typer()
 
 
 @app.callback(invoke_without_command=True)
-def main():
-    weather()
+def default(ctx: typer.Context):
+    if not ctx.invoked_subcommand:
+        weather()
 
 
 @app.command("weather")
