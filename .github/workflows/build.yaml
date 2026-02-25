@@ -13,7 +13,7 @@ jobs:
       - name: сheckout code
         uses: actions/checkout@v6
       - name: setup python
-      - uses: actions/setup-python@v6
+        uses: actions/setup-python@v6
         with:
           python-version: "3.12"
       - run: pip install -r requirements.txt -r requirements-build.txt
