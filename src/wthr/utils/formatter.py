@@ -81,7 +81,7 @@ def get_weather_style(code: int) -> str:
     elif code in (45, 48):  # Туман
         return "grey50"
     elif 50 <= code <= 67:  # Дождь
-        return "blue"
+        return "bright_blue "
     elif 70 <= code <= 77:  # Снег
         return "cyan"
     elif code >= 95:  # Гроза
@@ -185,7 +185,10 @@ def format_daily(forecast: DailyForecast) -> Panel:
         precip_value += f" ({forecast.precipitation_sum:.1f} мм)"
     table.add_row(
         Text("Осадки", style="grey60"),
-        Text(precip_value, style="blue" if forecast.precipitation_sum else "white"),
+        Text(
+            precip_value,
+            style="bright_blue " if forecast.precipitation_sum else "white",
+        ),
     )
     # Ветер
     if forecast.wind_speed_max is not None:
