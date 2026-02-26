@@ -149,7 +149,7 @@ def set(
     typer.echo(f'Ваше место: "{location}" сохранена в конфиг')
 
 
-@app.command()
+@app.command("get")
 def get() -> None:
     """Проверить текущее место в конфиге"""
     location = storage.get_default_location()
@@ -157,6 +157,21 @@ def get() -> None:
         text = f"Ваше место: {location}"
     else:
         text = "Ваше место не указано"
+    panel = Panel(
+        text,
+        border_style="grey50",
+        padding=(0, 2),
+        box=box.ROUNDED,
+        expand=False,
+    )
+    print(panel)
+
+
+@app.command("clear")
+def clear() -> None:
+    """Удалить конфиг"""
+    storage.clear()
+    text = "Конфиг удален"
     panel = Panel(
         text,
         border_style="grey50",

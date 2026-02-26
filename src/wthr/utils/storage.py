@@ -17,12 +17,14 @@ class Config(TypedDict):
 class Storage:
     def __init__(self, app_name: str, file_name: str) -> None:
         self._app_dir = Path(typer.get_app_dir(app_name))
-        self._app_dir.mkdir(exist_ok=True, parents=True)
-
         self._file_path: Path = self._app_dir / file_name
+
+    def _create_folder(self):
+        self._app_dir.mkdir(exist_ok=True, parents=True)
 
     @contextmanager
     def open_config(self) -> Generator[Config, None, None]:
+        self._create_folder()
         try:
             with open(self._file_path, "r") as file:
                 data: Config = json.load(file)
@@ -45,6 +47,13 @@ class Storage:
 
     def get_default_location(self) -> str | None:
         return self._get()["default"]
+
+    def clear(self):
+        self._file_path.unlink(missing_ok=True)
+        try:
+            self._app_dir.rmdir()
+        except FileNotFoundError:
+            pass
 
 
 storage = Storage(APP_NAME, FILE_NAME)
