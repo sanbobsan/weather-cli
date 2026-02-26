@@ -96,7 +96,8 @@ def weather(
         if loc := storage.get_default_location():
             location = loc
         else:
-            location = typer.prompt("Укажите место")
+            while not location:
+                location = str(typer.prompt("Укажите место")).strip()
             print()
 
     if not any([mixed, d, days, h, hours]):
@@ -142,7 +143,8 @@ def set(
 ) -> None:
     """Сохранить место в конфиг, чтобы в дальнейшем автоматически использовать его для получения погоды"""
     if not location:
-        location = typer.prompt("Укажите место")
+        while not location:
+            location = str(typer.prompt("Укажите место")).strip()
         print()
 
     storage.set_default_location(location)
