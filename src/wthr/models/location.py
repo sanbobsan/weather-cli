@@ -6,7 +6,7 @@ from pydantic import BaseModel
 class Location(BaseModel):
     """Информация о месте"""
 
-    name: str
+    display_name: str
     latitude: float
     longitude: float
 
@@ -14,7 +14,7 @@ class Location(BaseModel):
 class LocationDict(TypedDict):
     """Информация о месте в виде словаря"""
 
-    name: str
+    display_name: str
     latitude: float
     longitude: float
 

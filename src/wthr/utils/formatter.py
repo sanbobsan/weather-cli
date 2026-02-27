@@ -273,7 +273,7 @@ def format_weather(
     # Заголовок с названием города
     output.append(
         Panel(
-            Text(weather.location_name, style="bold white"),
+            Text(weather.location_display_name, style="bold white"),
             title="🌐",
             title_align="left",
             border_style="grey50",

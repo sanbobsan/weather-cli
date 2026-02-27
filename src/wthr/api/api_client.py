@@ -65,15 +65,15 @@ class WeatherAPIClient(APIClient):
         self._geocoder_url = "https://nominatim.openstreetmap.org/search"
         self._weather_url = "https://api.open-meteo.com/v1/forecast"
 
-    def get_location(self, location: str) -> Location:
+    def get_location(self, location_name: str) -> Location:
 
-        cache: LocationDict | None = location_cache_storage.get_location(location)
+        cache: LocationDict | None = location_cache_storage.get_location(location_name)
         if cache:
             location_: Location = Location.model_validate(cache)
             return location_
 
         params: dict = {
-            "q": location,
+            "q": location_name,
             "format": "json",
             "limit": 1,
         }
@@ -83,14 +83,14 @@ class WeatherAPIClient(APIClient):
             raise LocationNotFoundError
 
         location_data: LocationDict = {
-            "name": raw_data[0]["display_name"],
+            "display_name": raw_data[0]["display_name"],
             "latitude": round(float(raw_data[0]["lat"]), 2),
             "longitude": round(float(raw_data[0]["lon"]), 2),
         }
 
         location_cache_storage.save_location(
-            name=location,
-            display_name=location_data["name"],
+            name=location_name,
+            display_name=location_data["display_name"],
             latitude=location_data["latitude"],
             longitude=location_data["longitude"],
         )
@@ -151,17 +151,17 @@ class WeatherAPIClient(APIClient):
         return self._parse_weather_response(
             raw_data=raw_data,
             forecast_type=forecast_type,
-            location_name=location.name,
+            location_display_name=location.display_name,
         )
 
     def _parse_weather_response(
         self,
         raw_data: dict,
         forecast_type: ForecastType,
-        location_name: str,
+        location_display_name: str,
     ) -> Weather:
         """Преобразует ответ API в удобный формат"""
-        result: Weather = Weather(location_name=location_name)
+        result: Weather = Weather(location_display_name=location_display_name)
 
         if (
             forecast_type in (ForecastType.CURRENT, ForecastType.MIXED)

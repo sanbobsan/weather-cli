@@ -135,7 +135,7 @@ class LocationCacheStorage(CacheStorage[LocationDicts]):
 
         with self.open_data() as data:
             data[name] = {
-                "name": display_name,
+                "display_name": display_name,
                 "latitude": latitude,
                 "longitude": longitude,
             }
