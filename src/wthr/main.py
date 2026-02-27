@@ -6,7 +6,7 @@ from rich.panel import Panel
 
 from wthr.api import LocationNotFoundError, WeatherAPIClient
 from wthr.models import ForecastType
-from wthr.utils import format_weather, config_storage
+from wthr.utils import config_storage, format_weather
 
 app = typer.Typer()
 
@@ -160,15 +160,23 @@ def set(
         print()
 
     config_storage.set_default_location(location)
-    typer.echo(f'Ваше место: "{location}" сохранена в конфиг')
+    text: str = f'Ваше место: "{location}" сохранено в конфиг'
+    panel = Panel(
+        text,
+        border_style="grey50",
+        padding=(0, 2),
+        box=box.ROUNDED,
+        expand=False,
+    )
+    print(panel)
 
 
 @app.command("get")
 def get() -> None:
     """Проверить текущее место в конфиге"""
-    location = config_storage.get_default_location()
+    location: str | None = config_storage.get_default_location()
     if location:
-        text = f"Ваше место: {location}"
+        text: str = f"Ваше место: {location}"
     else:
         text = "Ваше место не указано"
     panel = Panel(
