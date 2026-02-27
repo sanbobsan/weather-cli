@@ -1,7 +1,7 @@
 from .formatter import format_weather
-from .storage import storage
+from .storage import config_storage
 
 __all__ = [
     "format_weather",
-    "storage",
+    "config_storage",
 ]
