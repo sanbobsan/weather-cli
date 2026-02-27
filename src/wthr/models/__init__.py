@@ -1,4 +1,11 @@
-from .storage import ConfigDict, get_empty_config_dict
+from .storage import (
+    ConfigDict,
+    LocationDict,
+    LocationDicts,
+    WeatherDict,
+    WeatherDicts,
+    get_empty_config_dict,
+)
 from .weather import (
     CurrentForecast,
     DailyForecast,
@@ -10,6 +17,10 @@ from .weather import (
 
 __all__ = [
     "ConfigDict",
+    "LocationDicts",
+    "LocationDict",
+    "WeatherDicts",
+    "WeatherDict",
     "get_empty_config_dict",
     "CurrentForecast",
     "DailyForecast",

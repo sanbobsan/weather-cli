@@ -9,8 +9,10 @@ from wthr.models import (
     ForecastType,
     HourlyForecast,
     Location,
+    LocationDict,
     Weather,
 )
+from wthr.utils import location_cache_storage
 
 
 class LocationNotFoundError(Exception):
@@ -64,6 +66,12 @@ class WeatherAPIClient(APIClient):
         self._weather_url = "https://api.open-meteo.com/v1/forecast"
 
     def get_location(self, location: str) -> Location:
+
+        cache: LocationDict | None = location_cache_storage.get_location(location)
+        if cache:
+            location_: Location = Location.model_validate(cache)
+            return location_
+
         params: dict = {
             "q": location,
             "format": "json",
@@ -74,21 +82,28 @@ class WeatherAPIClient(APIClient):
         if not raw_data:
             raise LocationNotFoundError
 
-        location_data: dict = {
+        location_data: LocationDict = {
             "name": raw_data[0]["display_name"],
-            "latitude": float(raw_data[0]["lat"]),
-            "longitude": float(raw_data[0]["lon"]),
+            "latitude": round(float(raw_data[0]["lat"]), 2),
+            "longitude": round(float(raw_data[0]["lon"]), 2),
         }
 
-        location_: Location = Location.model_validate(location_data)
+        location_cache_storage.save_location(
+            name=location,
+            display_name=location_data["name"],
+            latitude=location_data["latitude"],
+            longitude=location_data["longitude"],
+        )
+
+        location_ = Location.model_validate(location_data)
         return location_
 
     def get_weather(
         self,
         location: Location,
         forecast_type: ForecastType = ForecastType.CURRENT,
-        days: int = 1,
-        hours: int = 24,
+        days: int = 4,
+        hours: int = 12,
         timezone: str = "auto",
         temperature_unit: Literal["celsius", "fahrenheit"] | None = None,
         wind_speed_unit: Literal["kmh", "ms", "mph", "knots"] | None = None,
