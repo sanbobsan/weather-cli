@@ -1,4 +1,4 @@
-from .api_client import LocationNotFoundError, WeatherAPIClient
+from .weather_client import LocationNotFoundError, WeatherAPIClient
 
 __all__ = [
     "LocationNotFoundError",
