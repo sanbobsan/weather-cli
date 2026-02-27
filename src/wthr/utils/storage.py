@@ -2,17 +2,14 @@ import json
 from abc import ABC
 from contextlib import contextmanager
 from pathlib import Path
-from typing import Generic, Iterator, TypedDict, TypeVar
+from typing import Generic, Iterator, TypeVar
 
 import typer
 
+from wthr.models import ConfigDict, get_empty_config_dict
+
 APP_NAME = "wthr"
 FILE_NAME = "config.json"
-
-
-class ConfigDict(TypedDict):
-    default: str | None
-    "Локация, которая используется, если не указывать"
 
 
 T = TypeVar("T", bound=(dict | ConfigDict))
@@ -61,10 +58,11 @@ class Storage(ABC, Generic[T]):
 class ConfigStorage(Storage[ConfigDict]):
     def __init__(self, app_name: str, file_name: str) -> None:
         folder_path = Path(typer.get_app_dir(app_name))
+        empty_data_example: ConfigDict = get_empty_config_dict()
         super().__init__(
             folder_path=folder_path,
             file_name=file_name,
-            empty_data_example={"default": None},
+            empty_data_example=empty_data_example,
         )
 
     def set_default_location(self, default_location: str | None):
