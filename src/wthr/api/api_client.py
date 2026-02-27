@@ -13,6 +13,13 @@ from wthr.models import (
 )
 
 
+class LocationNotFoundError(Exception):
+    """Исключение, возникающее, когда локация не найдена с помощью геокодирования"""
+
+    def __init__(self, msg: str = "Локация не найдена"):
+        super().__init__(msg)
+
+
 class APIClient:
     def __init__(self) -> None:
         self._session: Session = self._create_session()
@@ -65,7 +72,7 @@ class WeatherAPIClient(APIClient):
         raw_data: dict = self._get(url=self._geocoder_url, params=params)
 
         if not raw_data:
-            raise Exception("Указана неверная локация")  # TODO
+            raise LocationNotFoundError
 
         location_data: dict = {
             "name": raw_data[0]["display_name"],

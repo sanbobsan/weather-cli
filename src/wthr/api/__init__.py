@@ -1,5 +1,6 @@
-from .api_client import WeatherAPIClient
+from .api_client import LocationNotFoundError, WeatherAPIClient
 
-__all__: list[str] = [
+__all__ = [
+    "LocationNotFoundError",
     "WeatherAPIClient",
 ]

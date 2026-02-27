@@ -4,7 +4,7 @@ import typer
 from rich import box, print
 from rich.panel import Panel
 
-from wthr.api import WeatherAPIClient
+from wthr.api import LocationNotFoundError, WeatherAPIClient
 from wthr.models import ForecastType
 from wthr.utils import format_weather, storage
 
@@ -118,7 +118,19 @@ def weather(
             hours = 12
 
     with WeatherAPIClient() as client:
-        location_ = client.get_location(location)
+        try:
+            location_ = client.get_location(location)
+        except LocationNotFoundError:
+            panel = Panel(
+                f"Локация '{location}' не найдена",
+                border_style="grey50",
+                padding=(0, 2),
+                box=box.ROUNDED,
+                expand=False,
+            )
+            print(panel)
+            return
+
         weather = client.get_weather(
             location=location_,
             forecast_type=type,
