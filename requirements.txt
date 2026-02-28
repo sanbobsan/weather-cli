@@ -22,6 +22,8 @@ mdurl==0.1.2
     # via markdown-it-py
 niquests==3.17.0
     # via wthr (pyproject.toml)
+platformdirs==4.9.2
+    # via wthr (pyproject.toml)
 pydantic==2.12.5
     # via wthr (pyproject.toml)
 pydantic-core==2.41.5
