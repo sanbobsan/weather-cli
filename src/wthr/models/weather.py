@@ -2,7 +2,7 @@ from typing import Optional, TypedDict
 
 from pydantic import BaseModel, Field
 
-from .forecast import CurrentForecast, DailyForecast, HourlyForecast
+from wthr.models.forecast import CurrentForecast, DailyForecast, HourlyForecast
 
 
 class Weather(BaseModel):
