@@ -6,7 +6,7 @@ from rich.panel import Panel
 
 from wthr.api import LocationNotFoundError, WeatherAPIClient
 from wthr.models import ForecastType
-from wthr.utils import config_storage, format_weather
+from wthr.utils import config_storage, format_weather, location_cache_storage
 
 app = typer.Typer()
 
@@ -190,10 +190,29 @@ def get() -> None:
 
 
 @app.command("clear")
-def clear() -> None:
-    """Удалить конфиг"""
-    config_storage.clear()
-    text = "Конфиг удален"
+def clear(
+    config: Annotated[
+        Optional[bool], typer.Option("--config", help="Очистить только конфиг")
+    ] = None,
+    cache: Annotated[
+        Optional[bool], typer.Option("--cache", help="Очистить только кеш")
+    ] = None,
+) -> None:
+    """Очистить конфиг и кеш"""
+
+    if not cache and not config:
+        location_cache_storage.clear()
+        config_storage.clear()
+        text = "Конфиг и кеш удалены"
+    else:
+        text = "Удалено:"
+        if cache:
+            location_cache_storage.clear()
+            text += " кеш"
+        if config:
+            config_storage.clear()
+            text += " конфиг"
+
     panel = Panel(
         text,
         border_style="grey50",
