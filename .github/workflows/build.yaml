@@ -26,4 +26,8 @@ jobs:
         uses: actions/upload-artifact@v6
         with:
           name: wthr-linux
-          path: dist/
+          path: dist/wthr
+        uses: actions/upload-artifact@v6
+        with:
+          name: wthr-linux-pyz
+          path: dist/wthr.pyz
