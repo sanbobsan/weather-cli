@@ -9,6 +9,8 @@ from rich.text import Text
 
 from wthr.models import CurrentForecast, DailyForecast, HourlyForecast, Weather
 
+EXPAND = True
+
 WEATHER_CODES: dict[int, tuple[str, str]] = {
     0: ("☀️", "Ясно"),
     1: ("🌤️", "Преимущественно ясно"),
@@ -138,7 +140,7 @@ def format_current(forecast: CurrentForecast) -> Panel:
         border_style="grey50",
         padding=(1, 2),
         box=box.ROUNDED,
-        expand=True,
+        expand=EXPAND,
     )
 
 
@@ -212,7 +214,7 @@ def format_daily(forecast: DailyForecast) -> Panel:
         border_style="grey50",
         padding=(1, 2),
         box=box.ROUNDED,
-        expand=True,
+        expand=EXPAND,
     )
 
 
@@ -259,7 +261,7 @@ def format_hourly(forecasts: list[HourlyForecast], limit: int = 12) -> Panel:
         border_style="grey50",
         padding=(1, 2),
         box=box.ROUNDED,
-        expand=True,
+        expand=EXPAND,
     )
 
 
@@ -278,7 +280,7 @@ def format_weather(
             title_align="left",
             border_style="grey50",
             box=box.ROUNDED,
-            expand=True,
+            expand=EXPAND,
         )
     )
     # Текущая погода

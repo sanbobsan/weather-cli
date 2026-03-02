@@ -45,6 +45,8 @@ packaging==26.0
     # via
     #   pyinstaller
     #   pyinstaller-hooks-contrib
+platformdirs==4.9.2
+    # via -r requirements.txt
 pydantic==2.12.5
     # via -r requirements.txt
 pydantic-core==2.41.5

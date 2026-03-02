@@ -54,5 +54,5 @@ class Storage(ABC, Generic[T]):
         self._file_path.unlink(missing_ok=True)
         try:
             self._folder_path.rmdir()
-        except FileNotFoundError:
+        except (FileNotFoundError, OSError):
             pass

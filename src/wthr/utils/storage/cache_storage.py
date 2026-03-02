@@ -8,9 +8,8 @@ from wthr.models import (
     LocationDicts,
     WeatherDicts,
 )
-
-from .app_info import APP_NAME, LOCATION_CACHE_FILE_NAME
-from .storage import Storage, T
+from wthr.utils.storage.app_info import APP_NAME, LOCATION_CACHE_FILE_NAME
+from wthr.utils.storage.storage import Storage, T
 
 
 class CacheStorage(Storage[T], Generic[T]):
