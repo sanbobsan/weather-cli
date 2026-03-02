@@ -8,7 +8,7 @@ from wthr.api import LocationNotFoundError, WeatherAPIClient
 from wthr.models import ForecastType
 from wthr.utils import config_storage, format_weather, location_cache_storage
 
-app = typer.Typer()
+app = typer.Typer(add_completion=False)
 
 
 @app.callback(invoke_without_command=True)
