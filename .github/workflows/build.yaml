@@ -25,10 +25,10 @@ jobs:
       - name: upload artifact linux
         uses: actions/upload-artifact@v6
         with:
-          name: wthr
+          name: wthr-linux
           path: dist/wthr
       - name: upload artifact linux pyz
         uses: actions/upload-artifact@v6
         with:
-          name: wthr-linux.pyz
+          name: wthr-linux-pyz
           path: dist/wthr.pyz
