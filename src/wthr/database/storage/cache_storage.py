@@ -3,13 +3,13 @@ from typing import Generic
 
 from platformdirs import user_cache_path
 
+from wthr.database.storage.app_info import APP_NAME, LOCATION_CACHE_FILE_NAME
+from wthr.database.storage.storage import Storage, T
 from wthr.models import (
     LocationDict,
     LocationDicts,
     WeatherDicts,
 )
-from wthr.utils.storage.app_info import APP_NAME, LOCATION_CACHE_FILE_NAME
-from wthr.utils.storage.storage import Storage, T
 
 
 class CacheStorage(Storage[T], Generic[T]):

@@ -2,12 +2,12 @@ from pathlib import Path
 
 import typer
 
+from wthr.database.storage.app_info import APP_NAME, CONFIG_FILE_NAME
+from wthr.database.storage.storage import Storage
 from wthr.models import (
     ConfigDict,
     get_empty_config_dict,
 )
-from wthr.utils.storage.app_info import APP_NAME, CONFIG_FILE_NAME
-from wthr.utils.storage.storage import Storage
 
 
 class ConfigStorage(Storage[ConfigDict]):

@@ -5,8 +5,9 @@ from rich import box, print
 from rich.panel import Panel
 
 from wthr.api import LocationNotFoundError, WeatherAPIClient
+from wthr.database import config_storage, location_cache_storage
 from wthr.models import ForecastType
-from wthr.utils import config_storage, format_weather, location_cache_storage
+from wthr.utils import format_weather
 
 app = typer.Typer(add_completion=False)
 

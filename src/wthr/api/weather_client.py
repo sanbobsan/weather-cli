@@ -1,6 +1,7 @@
 from typing import Literal
 
 from wthr.api.api_client import APIClient
+from wthr.database import location_cache_storage
 from wthr.models import (
     CurrentForecast,
     DailyForecast,
@@ -10,7 +11,6 @@ from wthr.models import (
     LocationDict,
     Weather,
 )
-from wthr.utils import location_cache_storage
 
 
 class LocationNotFoundError(Exception):
