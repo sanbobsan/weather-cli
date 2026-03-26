@@ -14,7 +14,7 @@ else
     SHIV = $(VENV_BIN)/shiv
 endif
 
-.PHONY: help setup setup-dev build build-exe build-shiv run clean
+.PHONY: help setup setup-dev build build-exe build-shiv build-dist upload run clean
 .DEFAULT_GOAL := help
 
 help:
@@ -44,7 +44,7 @@ setup-dev: setup
 build: build-exe build-shiv
 
 build-exe:
-	rm -rf build dist
+	rm -rf build dist/wthr
 	$(PYINSTALLER) --clean wthr.spec
 	@echo "✅ Готово! Исполняемый файл находится в папке dist/"
 
@@ -56,6 +56,15 @@ build-shiv:
 	    --entry-point "wthr.main:app" \
 	    --python "/usr/bin/env python3"
 	@echo "✅ Готово! Архив .pyz находится в папке dist/"
+
+build-dist:
+	rm -rf dist/*.whl dist/*.tar.gz
+	$(PYTHON) -m pip install --upgrade build
+	$(PYTHON) -m build
+
+upload: build-dist
+	$(PYTHON) -m pip install --upgrade twine
+	$(PYTHON) -m twine upload dist/*.whl dist/*.tar.gz --verbose
 
 run:
 	$(PYTHON) -m wthr.main $(ARGS)
