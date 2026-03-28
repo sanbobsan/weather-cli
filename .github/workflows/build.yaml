@@ -9,7 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: сheckout code
+      - name: checkout code
         uses: actions/checkout@v6
       - name: setup python
         uses: actions/setup-python@v6
@@ -19,9 +19,9 @@ jobs:
           cache-dependency-path: "**/requirements-build.txt"
       - run: pip install -r requirements-build.txt
       - name: build via pyinstaller
-        run: sh build.sh
+        run: make build-exe
       - name: build via shiv
-        run: sh build_shiv.sh
+        run: make build-shiv
       - name: upload artifact linux
         uses: actions/upload-artifact@v6
         with:
