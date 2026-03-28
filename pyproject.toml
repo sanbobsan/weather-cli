@@ -23,8 +23,11 @@ build = ["pyinstaller", "shiv"]
 [project.urls]
 Repository = "https://github.com/sanbobsan/weather-cli.git"
 
+[project.scripts]
+wthr = "wthr.main:app"
+
 [tool.setuptools.packages.find]
 where = ["src"]
 
-[project.scripts]
-wthr = "wthr.main:app"
+[tool.mypy]
+mypy_path = ["src", "tests"]
