@@ -14,13 +14,16 @@ else
     SHIV = $(VENV_BIN)/shiv
 endif
 
-.PHONY: help setup setup-dev build build-exe build-shiv build-dist upload run clean
+.PHONY: help setup setup-dev build build-exe build-shiv build-dist upload test run clean
 .DEFAULT_GOAL := help
 
 help:
 	@echo "Команды для подготовки:"
 	@echo "  setup          - Создать venv и установить основные зависимости"
 	@echo "  setup-dev      - Установить зависимости для разработки (тесты, линтеры)"
+	@echo ""
+	@echo "Проверка и тесты:"
+	@echo "  test           - Запустить тесты"
 	@echo ""
 	@echo "Команды сборки (в папку dist/):"
 	@echo "  build          - Запустить обе сборки (EXE и SHIV)"
@@ -65,6 +68,9 @@ build-dist:
 upload: build-dist
 	$(PYTHON) -m pip install --upgrade twine
 	$(PYTHON) -m twine upload dist/*.whl dist/*.tar.gz --verbose
+
+test:
+	$(PYTHON) -m pytest
 
 run:
 	$(PYTHON) -m wthr.main $(ARGS)

@@ -17,7 +17,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-dev = ["pip-tools", "mypy"]
+dev = ["pip-tools", "mypy", "pytest"]
 build = ["pyinstaller", "shiv"]
 
 [project.urls]
