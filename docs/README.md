@@ -52,7 +52,16 @@ wthr --help
 1. поместить исполняемый файл в _`/usr/local/bin`_
 2. запускать командой `wthr` / `wthr.pyz`
 
-### Использование python для запуска
+### Установка через pip
+
+```bash
+pip install wthrcli
+```
+
+```bash
+python -m wthr
+wthr
+```
 
 ## 🏗️ Сборка
 
