@@ -19,9 +19,19 @@ jobs:
           cache-dependency-path: "**/requirements-build.txt"
       - run: pip install -r requirements-build.txt
       - name: build via pyinstaller
-        run: make build-exe
+        run: |
+          rm -rf build dist
+          pyinstaller --clean wthr.spec
+          echo "✅ Готово! Исполняемый файл находится в папке dist/"
       - name: build via shiv
-        run: make build-shiv
+        run: |
+          rm -f dist/wthr.pyz
+          mkdir -p dist
+          shiv . \
+            --output-file dist/wthr.pyz \
+            --entry-point "wthr.main:app" \
+            --python "/usr/bin/env python3"
+          echo "✅ Готово! Архив .pyz находится в папке dist/"
       - name: upload artifact linux
         uses: actions/upload-artifact@v6
         with:
